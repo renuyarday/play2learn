@@ -1,14 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Play2learn</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Play to learn</title>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= favicon_link_tag '/assets/favicon.ico' %>
+    <%= yield(:head) %>
+  </head>
 
-<%= yield %>
-
-</body>
+  <body>
+    <header class="navbar navbar-fixed-top">
+    <nav class="navbar-inner">
+      <div class="container">
+        <%= render 'layouts/navigation' %>
+        <%= render 'layouts/session_links' %>
+      </div>
+    </nav>
+    </header>
+  
+    <div id="main" role="main">
+      <div class="container">
+        <ul class="breadcrumb">
+          <li>
+            <%= link_to "Home", root_url, :id => "home" %>
+          </li>
+          <li>
+          </li>
+          <% if !params[:controller].nil? && params[:controller] != "home" %>
+            <span class="divider">/</span>
+            <li class="active"><%= params[:controller] %></li>
+          <% end %>
+        </ul>
+        <div class="content">
+          <div class="row">
+            <div class="span12">
+              <%= render 'layouts/messages' %>
+              <%= yield %>
+            </div>
+          </div>
+          <footer>
+          </footer>
+        </div>
+      </div>
+      <!--! end of .container -->
+    </div>
+    <!--! end of #main -->
+  </body>
 </html>
