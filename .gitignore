@@ -54,3 +54,5 @@ capybara-*.html
 .externalToolBuilders/*
 .settings/*
 .directory
+*.sublime-project
+*.sublime-workspace
