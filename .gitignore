@@ -56,3 +56,4 @@ capybara-*.html
 .directory
 *.sublime-project
 *.sublime-workspace
+.idea/
