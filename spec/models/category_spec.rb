@@ -12,4 +12,5 @@ describe "Category" do
     c.errors[:badge_image].should == ["can't be blank"]
   end
 
+  pending "add test to validate the presence of a category with same name while creating new one #{__FILE__}"
 end
