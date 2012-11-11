@@ -4,11 +4,14 @@ class Book
   include Mongoid::Paperclip
 
   field :title, :type => String
+  field :author, :type => String
   field :summary, :type => String
   field :link, :type => String
 
   has_mongoid_attached_file :cover_image
 
-  validates_presence_of :title, :link
+  belongs_to :category
+
+  validates_presence_of :title, :author, :link, :category
   validates :cover_image, :attachment_presence => true
 end
