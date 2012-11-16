@@ -10,4 +10,5 @@ class Category
 
   validates_presence_of :name
   validates :badge_image, :attachment_presence => true
+  validates :name, :uniqueness => true
 end
