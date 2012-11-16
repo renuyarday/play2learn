@@ -16,7 +16,7 @@ ActiveAdmin.register Quiz do
    panel "Questions" do
       unless quiz.questions.empty?
         table_for(quiz.questions) do
-          column('Question')   { |question| question.question_text } 
+          column('Question')   { |question| question.question_text }           
         end
       end
     end

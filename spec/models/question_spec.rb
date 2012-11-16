@@ -1,35 +1,33 @@
 require "spec_helper"
 
-describe "Question" do
-
-  it "should return errors if question text was not specified" do
-    b = Question.create
-
-    b.errors[:ques_text].should == ["can't be blank"]
+describe Question do
+  
+  describe "should have the structure" do
+    before { @question = Question.create question_text:"Foo",
+      answers: [], correct_answer_index: 1, book: Book.new, hint: "Foo", quiz: Quiz.new }
+  
+    subject { @question }
+  
+    it { should respond_to(:question_text) }
+    it { should respond_to(:answers) }
+    it { should respond_to(:correct_answer_index) }
+    it { should respond_to(:book) }
+    it { should respond_to(:hint) }
+    it { should respond_to(:quiz) }
   end
-
-  it "should return errors if answer options was not specified" do
-    b = Question.create
-
-    b.errors[:answer.length < 4].should == ["can't be less then 4"]
-  end
-
-  it "should return errors if correct answer index was not specified" do
-    b = Question.create
-
-    b.errors[:correct_ans_index].should == ["can't be blank"]
-  end
-
-  it "should return errors if Hint was not specified" do
-    b = Question.create
-
-    b.errors[:hint].should == ["can't be blank"]
-  end
-
-  it "should return errors if quiz was not specified" do
-    b = Question.create
-
-    b.errors[:quiz].should == ["can't be blank"]
+  
+  describe "should have validations" do
+    before { @question = Question.create }
+    
+    it { @question.errors[:question_text].should == ["can't be blank"] }
+  
+    it { @question.errors[:answers].should == ["A question must have at least one answer"] }
+  
+    it { @question.errors[:correct_answer_index].should == ["can't be blank"] }
+  
+    it { @question.errors[:hint].should == ["can't be blank"] }
+  
+    it { @question.errors[:quiz].should == ["can't be blank"] }
   end
 
 end
