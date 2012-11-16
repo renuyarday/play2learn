@@ -5,7 +5,9 @@ ActiveAdmin.register Book do
     end
     column :title
     column :author
-    column :category
+    column "Categories" do |book|
+      simple_format "<ul>#{book.categories.map { |category| "<li>#{category.name}</li>" }.join}</ul>"
+    end
     column "Link to Book" do |book|
       link_to book.link
     end
@@ -20,7 +22,7 @@ ActiveAdmin.register Book do
         link_to book.link
       end
       row "Category" do
-        book.category.name
+        simple_format "<ul>#{book.categories.map { |category| "<li>#{category.name}</li>" }.join}</ul>"
       end
       row "Summary" do
         simple_format book.summary
@@ -36,7 +38,7 @@ ActiveAdmin.register Book do
       f.input :title
       f.input :author
       f.input :summary, :as => :text
-      f.input :category, :as => :select
+      f.input :categories, :as => :check_boxes
       f.input :link, :as => :url
       f.input :cover_image, :as => :file
     end

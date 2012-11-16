@@ -10,8 +10,8 @@ class Book
 
   has_mongoid_attached_file :cover_image
 
-  belongs_to :category
+  has_and_belongs_to_many :categories
 
-  validates_presence_of :title, :author, :link, :category
+  validates_presence_of :title, :author, :link, :categories
   validates :cover_image, :attachment_presence => true
 end
