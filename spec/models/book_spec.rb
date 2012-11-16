@@ -20,10 +20,10 @@ describe "Book" do
     b.errors[:cover_image].should == ["can't be blank"]
   end
 
-  it "should return errors if category was not specified" do
+  it "should return errors if book was not associated with any categories" do
     b = Book.create
 
-    b.errors[:category].should == ["can't be blank"]
+    b.errors[:categories].should == ["At least one category must be selected"]
   end
 
   it "should return errors if author was not specified" do

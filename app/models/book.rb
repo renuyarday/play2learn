@@ -12,6 +12,7 @@ class Book
 
   has_and_belongs_to_many :categories
 
-  validates_presence_of :title, :author, :link, :categories
+  validates_presence_of :title, :author, :link
   validates :cover_image, :attachment_presence => true
+  validates :categories, :presence => { :message => "At least one category must be selected" }
 end
