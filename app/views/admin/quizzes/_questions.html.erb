@@ -5,7 +5,7 @@
 			<thead>
 	            <tr>
 	              <th class="">Question</th>
-	              <th>Answers</th>
+	              <th>Hint</th>
 	              <th></th>
 	            </tr>
 	        </thead>
@@ -13,7 +13,7 @@
           		<% for question in @quiz.questions %>
           		<tr class="odd">
           			<td class=""><%= question.question_text %></td>
-          			<td class=""><%= question.answers.length %></td>
+          			<td class=""><%= question.hint %></td>
           			<td class="">
           				<%=	 link_to "View", admin_question_path(question) %>
                   <%=  link_to "Edit", edit_admin_question_path(question) %>

@@ -5,10 +5,12 @@ ActiveAdmin.register Question do
   	"Foo"
   end
 
-  show do |category|
+  show :title => :question_text do |category|
     attributes_table do
       row :question_text
-      row :correct_answer_index
+      row "Correct Answer" do |category|
+        "TBD"
+      end
       row :hint
       row "Quiz" do |question|
       	question.quiz.title
