@@ -1,4 +1,6 @@
 ActiveAdmin.register Category do
+  menu priority: 2
+
   index do
     column "Badge" do |category|
       image_tag(category.badge_image.url)

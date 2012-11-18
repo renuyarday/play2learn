@@ -1,5 +1,6 @@
 ActiveAdmin.register Quiz do
-  
+  menu priority: 4
+
   index do
     column :title
     column :category
@@ -13,13 +14,7 @@ ActiveAdmin.register Quiz do
         quiz.category.name
       end
    end
-   panel "Questions" do
-      unless quiz.questions.empty?
-        table_for(quiz.questions) do
-          column('Question')   { |question| question.question_text }           
-        end
-      end
-    end
+   render "questions"
  end
 
   form(:html => { :multipart => true }) do |f|
