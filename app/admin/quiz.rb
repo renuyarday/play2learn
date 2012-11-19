@@ -10,17 +10,26 @@ ActiveAdmin.register Quiz do
   show do |quiz|
     attributes_table do
       row :title
+      row :description
       row "Category" do
         quiz.category.name
+      end
+      row "Duration" do
+        "#{quiz.time["hours"]} hours and #{quiz.time["minutes"]} minutes"
       end
    end
    render "questions"
  end
 
-  form(:html => { :multipart => true }) do |f|
-    f.inputs "Category Details" do
+  form do |f|
+    f.inputs "Quiz Details" do
       f.input :title
+      f.input :description, :as => :text
       f.input :category, :as => :select
+      f.inputs :for => :time, :name => "Duration" do |t|
+        t.input :hours, :as => :select, :collection => 0..23
+        t.input :minutes, :as => :select, :collection => 0..59
+      end
     end
     f.buttons
   end
