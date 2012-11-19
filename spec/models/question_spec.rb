@@ -9,11 +9,8 @@ describe Question do
     subject { @question }
   
     it { should respond_to(:question_text) }
-    it { should respond_to(:answers) }
-    it { should respond_to(:correct_answer_index) }
-    it { should respond_to(:book) }
-    it { should respond_to(:hint) }
-    it { should respond_to(:quiz) }
+    it { should respond_to(:correct_answer_hint) }
+    it { should respond_to(:incorrect_answer_hint) }
   end
   
   #describe "should validate" do
