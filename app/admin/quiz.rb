@@ -10,7 +10,9 @@ ActiveAdmin.register Quiz do
   show do |quiz|
     attributes_table do
       row :title
-      row :description
+      row "Description" do
+        simple_format quiz.description
+      end
       row "Category" do
         quiz.category.name
       end
@@ -24,7 +26,7 @@ ActiveAdmin.register Quiz do
   form do |f|
     f.inputs "Quiz Details" do
       f.input :title
-      f.input :description, :as => :text
+      f.input :description, :as => :rich
       f.input :category, :as => :select
       f.inputs :for => :time, :name => "Duration" do |t|
         t.input :hours, :as => :select, :collection => 0..23
