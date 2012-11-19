@@ -24,10 +24,10 @@ ActiveAdmin.register Question do
       f.input :correct_answer_hint
       f.input :incorrect_answer_hint
       f.input :quiz, :as => :select
-      f.inputs :answer_text, :is_correct, :as =>:radio, :collection => ["True", "False"], :for => :answers, :name => 'Answer-1 #%i'
-      f.inputs :answer_text, :is_correct, :for => :answers, :name => 'Answer-2 #%i'
-      f.inputs :answer_text, :is_correct, :for => :answers, :name => 'Answer-3 #%i'
-      f.inputs :answer_text, :is_correct, :for => :answers, :name => 'Answer-4 #%i'
+      #f.inputs :answer_text, :is_correct, :as =>:radio, :collection => ["True", "False"], :for => :answers, :name => 'Answer-1 #%i'
+      #f.inputs :answer_text, :is_correct, :for => :answers, :name => 'Answer-2 #%i'
+      #f.inputs :answer_text, :is_correct, :for => :answers, :name => 'Answer-3 #%i'
+      #f.inputs :answer_text, :is_correct, :for => :answers, :name => 'Answer-4 #%i'
     end
     f.buttons
   end

@@ -4,7 +4,7 @@ describe Question do
   
   describe "should have the structure" do
     before { @question = Question.create question_text:"Foo",
-      answers: {}, correct_answer_index: nil, book: Book.new, hint: "Foo", quiz: Quiz.new }
+       correct_answer_hint: "anything", incorrect_answer_hint:"nothing", book: Book.new, hint: "Foo", quiz: Quiz.new }
   
     subject { @question }
   
