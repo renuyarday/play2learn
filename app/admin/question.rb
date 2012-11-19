@@ -21,8 +21,8 @@ ActiveAdmin.register Question do
   form(:html => { :multipart => true }) do |f|
     f.inputs "Question Details" do
       f.input :question_text
-      f.input :correct_answer_hint
-      f.input :incorrect_answer_hint
+      f.input :correct_answer_hint, :as => :rich, :config => { :width => '76%', :height => '100px' }
+      f.input :incorrect_answer_hint, :as => :rich, :config => { :width => '76%', :height => '100px' }
       f.input :quiz, :as => :select
       #f.inputs :answer_text, :is_correct, :as =>:radio, :collection => ["True", "False"], :for => :answers, :name => 'Answer-1 #%i'
       #f.inputs :answer_text, :is_correct, :for => :answers, :name => 'Answer-2 #%i'
