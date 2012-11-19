@@ -1,6 +1,14 @@
 ActiveAdmin.register Question do
   menu false
 
+  controller do
+    def new
+      new! do |format|
+        format.html { @question.quiz = Quiz.find(params[:quiz_id]) }
+      end
+    end
+  end
+
   index do
   	"Foo"
   end
@@ -11,23 +19,26 @@ ActiveAdmin.register Question do
       row "Correct Answer" do |category|
         "TBD"
       end
-      row :hint
       row "Quiz" do |question|
-      	question.quiz.title
+      	link_to question.quiz.title, admin_quiz_path(question.quiz)
       end
     end
   end
 
-  form(:html => { :multipart => true }) do |f|
+  form do |f|
     f.inputs "Question Details" do
       f.input :question_text
-      f.input :correct_answer_hint, :as => :rich, :config => { :width => '76%', :height => '100px' }
-      f.input :incorrect_answer_hint, :as => :rich, :config => { :width => '76%', :height => '100px' }
+      f.input :correct_answer_hint, :as => :rich, :config => { :width => '100%', :height => '100px' }
+      f.input :incorrect_answer_hint, :as => :rich, :config => { :width => '100%', :height => '100px' }
       f.input :quiz, :as => :select
-      #f.inputs :answer_text, :is_correct, :as =>:radio, :collection => ["True", "False"], :for => :answers, :name => 'Answer-1 #%i'
-      #f.inputs :answer_text, :is_correct, :for => :answers, :name => 'Answer-2 #%i'
-      #f.inputs :answer_text, :is_correct, :for => :answers, :name => 'Answer-3 #%i'
-      #f.inputs :answer_text, :is_correct, :for => :answers, :name => 'Answer-4 #%i'
+
+      f.inputs "Answers" do
+        f.has_many :answers, :header => "" do |answer|
+          answer.input :answer_text
+          answer.input :is_correct, :as => :boolean
+          answer.input :_destroy, :as=>:boolean, :required => false, :label=>'Remove'
+        end
+      end
     end
     f.buttons
   end

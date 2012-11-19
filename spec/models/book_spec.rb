@@ -1,35 +1,29 @@
 require "spec_helper"
 
-describe "Book" do
+describe Book do
 
-  it "should return errors if title was not specified" do
-    b = Book.create
+  describe "should validate to ensure that" do
+    before { @book = Book.create }
 
-    b.errors[:title].should == ["can't be blank"]
-  end
+    it "title was specified" do
+      @book.errors[:title].should == ["can't be blank"]
+    end
 
-  it "should return errors if link was not specified" do
-    b = Book.create
+    it "link was specified" do
+      @book.errors[:link].should == ["can't be blank"]
+    end
 
-    b.errors[:link].should == ["can't be blank"]
-  end
+    it "cover image was specified" do
+      @book.errors[:cover_image].should == ["can't be blank"]
+    end
 
-  it "should return errors if cover image was not specified" do
-    b = Book.create
+    it "book associated with at least one category" do
+      @book.errors[:categories].should == ["At least one category must be selected"]
+    end
 
-    b.errors[:cover_image].should == ["can't be blank"]
-  end
-
-  it "should return errors if book was not associated with any categories" do
-    b = Book.create
-
-    b.errors[:categories].should == ["At least one category must be selected"]
-  end
-
-  it "should return errors if author was not specified" do
-    b = Book.create
-
-    b.errors[:author].should == ["can't be blank"]
+    it "author was specified" do
+      @book.errors[:author].should == ["can't be blank"]
+    end
   end
 
 end
