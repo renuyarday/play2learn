@@ -29,28 +29,32 @@ describe Quiz do
     it { @quiz.errors[:categories].should == ["can't be blank"] }
 
   end
+
+  describe do
+    before do
+     refresh_categories
+     @quiz.categories = [Category.first]
+    end
   
-  it "cannot be re-published" do 
-    @quiz.publish
-    expect { @quiz.publish }.to raise_error
-  end
+    it "cannot be re-published" do
+      @quiz.publish
+      expect { @quiz.publish }.to raise_error
+    end
 
-  it "should indicate if its published" do
-    @quiz.publish
-    @quiz.published?.should == true
-  end
+    it "should indicate if its published" do
+      @quiz.publish
+      @quiz.published?.should == true
+    end
 
-  it "should be marked deleted when delete is performed" do
-    refresh_categories
+    it "should be marked deleted when delete is performed" do
+      @quiz.save!
+      Quiz.all.count.should == 1
 
-    @quiz.categories = [Category.first]
-    @quiz.save!
-    Quiz.all.count.should == 1
-
-    @quiz.delete
-    Quiz.all.count.should == 0
-    
-    Quiz.where(:deleted_at.exists => true, :title => 'Foo').count.should == 1
+      @quiz.delete
+      Quiz.all.count.should == 0
+      
+      Quiz.where(:deleted_at.exists => true, :title => 'Foo').count.should == 1
+    end
   end
 
 end

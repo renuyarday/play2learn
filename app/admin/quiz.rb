@@ -44,20 +44,21 @@ ActiveAdmin.register Quiz do
   end
 
   member_action :publish_quiz, :method => :put do
+    puts "Inside Quiz publish controller"
     @quiz = Quiz.find(params[:id])
     @quiz.publish
     redirect_to admin_quiz_path(@quiz)
   end
 
   action_item :only => :show, :if => Proc.new { !quiz.published? } do
-    link_to 'Publish Quiz', {:action => :publish_quiz, :id => quiz.id}, :method => :put
+    link_to 'Publish Quiz', {:action => :publish_quiz, :id => quiz.id}, :confirm => "Are you sure you want to publish this quiz?", :method => :put
   end
 
-  action_item :only => :show do
+  action_item :only => :show, :if => Proc.new { !quiz.published? } do
     link_to('Add Question', new_admin_question_path(:quiz_id => quiz.id))
   end
 
-  action_item :only => :edit do
+  action_item :only => :edit, :if => Proc.new { !quiz.published? } do
     link_to('Add Question', new_admin_question_path(:quiz_id => quiz.id))
   end
   

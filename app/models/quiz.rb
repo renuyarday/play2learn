@@ -19,11 +19,12 @@ class Quiz
 
   def publish
   	raise "Quiz is already published" if published?
-  	@status = Published_Status
-  	save
+  	self.status = Published_Status
+    self.save!
+    puts errors.full_messages.length
   end
 
   def published?
-  	@status == Published_Status
+  	self.status == Published_Status
   end
 end
