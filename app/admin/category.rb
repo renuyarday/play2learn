@@ -1,8 +1,6 @@
 ActiveAdmin.register Category do
   menu priority: 2
 
-  actions :all, :except => [:destroy]
-
   index do
     column "Badge" do |category|
       image_tag(category.badge_image.url)

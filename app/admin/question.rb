@@ -1,8 +1,6 @@
 ActiveAdmin.register Question do
   menu false
 
-  actions :all, :except => [:destroy]
-
   controller do
     def new
       new! do |format|

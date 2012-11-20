@@ -2,6 +2,7 @@ class Book
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Paperclip
+  include Mongoid::Paranoia
 
   field :title, :type => String
   field :author, :type => String

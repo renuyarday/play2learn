@@ -1,7 +1,7 @@
 class Question
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Paperclip
+  include Mongoid::Paranoia
 
   field :question_text,           :type => String
   

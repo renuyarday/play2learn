@@ -2,6 +2,7 @@ class Category
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Paperclip
+  include Mongoid::Paranoia
 
   field :name, :type => String
   has_mongoid_attached_file :badge_image

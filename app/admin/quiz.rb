@@ -1,8 +1,6 @@
 ActiveAdmin.register Quiz do
   menu priority: 4
 
-  actions :all, :except => [:destroy]
-
   index do
     column :title
     column "Categories" do |quiz|
@@ -40,7 +38,6 @@ ActiveAdmin.register Quiz do
   end
 
   member_action :publish_quiz, :method => :put do
-    puts "Foo"
     @quiz = Quiz.find(params[:id])
     @quiz.publish
     redirect_to admin_quiz_path(@quiz)

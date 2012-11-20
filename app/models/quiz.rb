@@ -1,6 +1,7 @@
 class Quiz
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Paranoia
 
   Published_Status = "Published"
   

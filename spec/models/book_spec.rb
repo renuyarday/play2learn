@@ -1,6 +1,20 @@
 require "spec_helper"
 
 describe Book do
+  before { @book = Book.create :title => "Foo", :link => "http://foo.com",
+    :cover_image => File.open("#{Rails.root}/db/icon_badge.gif"),
+    :categories => [Category.first], :author => "John Doe" }
+
+  describe "should have the structure" do
+  
+    subject { @book }
+  
+    it { should respond_to(:title) }
+    it { should respond_to(:link) }
+    it { should respond_to(:cover_image) }
+    it { should respond_to(:categories) }
+    it { should respond_to(:author) }
+  end
 
   describe "should validate to ensure that" do
     before { @book = Book.create }
@@ -24,6 +38,14 @@ describe Book do
     it "author was specified" do
       @book.errors[:author].should == ["can't be blank"]
     end
+  end
+
+  it "should be marked deleted when delete is performed" do
+    @book.save!
+    Book.all.count.should == 1
+    @book.delete
+    Book.all.count.should == 0
+    Book.where(:deleted_at.exists => true, :title => 'Foo').count.should == 1
   end
 
 end
