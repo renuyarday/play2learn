@@ -20,11 +20,11 @@ describe Question do
 
   end
 
-  #it "should ensure the one answer is selected as the correct answer" do
-  #  @question.answers << Answer.create(:answer_text => "Q1")
-  #  @question.answers << Answer.create(:answer_text => "Q2")
-  #
-  #  @question.errors[:answers].should == "One answer must be selected as the correct answers"
-  #end
+  it "should create a question with valid params" do
+    question = Question.create(:question_text => "Who is batman", :answers => { 0 => {:answer_text => "Me", :hint => "dumb ass read this book", :is_correct => false}, 
+                                                                                1 => {:answer_text => "Batman", :hint => "finally", :is_correct => true}, 
+                                                                                2 => {:answer_text =>"you", :hint => "ha ha ha", :is_correct => false}})
+    question.should be_persisted
+  end
 
 end
