@@ -8,6 +8,7 @@ class Quiz
   field :title,   :type => String
   field :description, :type => String
   field :status, :type => String, :default => "Draft"
+  field :duration, :type => Integer, :default => Settings.quiz.duration
 
   has_and_belongs_to_many :categories
   

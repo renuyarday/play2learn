@@ -15,6 +15,7 @@ describe Quiz do
     it { should respond_to(:description) }
     it { should respond_to(:categories) }
     it { should respond_to(:status) }
+    it { should respond_to(:duration) }
 
   end
 
@@ -22,6 +23,7 @@ describe Quiz do
     before { @quiz = Quiz.create }
 
     it { @quiz.status.should == "Draft" }
+    it { @quiz.duration.should == Settings.quiz.duration }
     it { @quiz.errors[:title].should == ["can't be blank"] }
     it { @quiz.errors[:description].should == ["can't be blank"] }
     it { @quiz.errors[:categories].should == ["can't be blank"] }

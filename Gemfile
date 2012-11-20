@@ -12,6 +12,7 @@ gem 'mongoid'
 gem 'activeadmin-mongoid', :git => 'https://github.com/elia/activeadmin-mongoid.git'
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
 gem 'rich'
+gem 'settingslogic'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -1,0 +1,10 @@
+# config/application.yml
+defaults: &defaults
+  quiz:
+    duration: 15
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults

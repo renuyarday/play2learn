@@ -7,6 +7,9 @@ ActiveAdmin.register Quiz do
       simple_format "<ul>#{quiz.categories.map { |category| "<li>#{category.name}</li>" }.join}</ul>"
     end
     column :status
+    column "Duration" do |quiz|
+      time_ago_in_words quiz.duration.minutes.from_now
+    end
     default_actions
   end
 
@@ -19,7 +22,10 @@ ActiveAdmin.register Quiz do
       row "Categories" do
         simple_format "<ul>#{quiz.categories.map { |category| "<li>#{category.name}</li>" }.join}</ul>"
       end
-      row :status
+      row :status 
+      row "Duration" do
+        time_ago_in_words quiz.duration.minutes.from_now
+      end
    end
    render "questions"
  end
