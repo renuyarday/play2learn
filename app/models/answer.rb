@@ -5,10 +5,11 @@ class Answer
   
   field :answer_text,  :type => String
   field :is_correct,   :type => Boolean, :default => false
+  field :hint,         :type => String
   
   belongs_to :question
    
-  validates_presence_of :answer_text
+  validates_presence_of :answer_text, :hint
   validates_associated :question
   
 end

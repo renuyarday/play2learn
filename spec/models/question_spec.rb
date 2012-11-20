@@ -2,16 +2,14 @@ require "spec_helper"
 
 describe Question do
   before { @question = Question.create question_text:"Foo",
-       correct_answer_hint: "anything", 
-       incorrect_answer_hint:"nothing", book: Book.new, hint: "Foo", quiz: Quiz.new }
+              book: Book.new, hint: "Foo", quiz: Quiz.new }
 
   describe "should have the structure" do
   
     subject { @question }
   
     it { should respond_to(:question_text) }
-    it { should respond_to(:correct_answer_hint) }
-    it { should respond_to(:incorrect_answer_hint) }
+   
   end
   
   describe "should validate" do

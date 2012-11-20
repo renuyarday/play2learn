@@ -9,7 +9,7 @@ describe Quiz do
       
     it { should respond_to(:title) }
     it { should respond_to(:description) }
-    it { should respond_to(:category) }
+    it { should respond_to(:categories) }
     it { should respond_to(:status) }
   end
 
@@ -19,7 +19,7 @@ describe Quiz do
     it { @quiz.status.should == "Draft" }
     it { @quiz.errors[:title].should == ["can't be blank"] }
     it { @quiz.errors[:description].should == ["can't be blank"] }
-    it { @quiz.errors[:category].should == ["can't be blank"] }
+    it { @quiz.errors[:categories].should == ["can't be blank"] }
   end
   
   it "cannot be re-published" do 

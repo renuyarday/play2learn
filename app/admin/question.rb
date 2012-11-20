@@ -27,13 +27,12 @@ ActiveAdmin.register Question do
   form do |f|
     f.inputs "Question Details" do
       f.input :question_text
-      f.input :correct_answer_hint, :as => :rich, :config => { :width => '100%', :height => '100px' }
-      f.input :incorrect_answer_hint, :as => :rich, :config => { :width => '100%', :height => '100px' }
       f.input :quiz, :as => :select
 
       f.inputs "Answers" do
         f.has_many :answers, :header => "" do |answer|
           answer.input :answer_text
+          answer.input :hint, :as => :rich, :config => { :width => '85%', :height => '100px' }
           answer.input :is_correct, :as => :boolean
           answer.input :_destroy, :as=>:boolean, :required => false, :label=>'Remove'
         end

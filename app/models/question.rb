@@ -4,8 +4,6 @@ class Question
   include Mongoid::Paperclip
 
   field :question_text,           :type => String
-  field :correct_answer_hint,     :type => String
-  field :incorrect_answer_hint,   :type => String
   
   has_many :answers
   accepts_nested_attributes_for :answers, :allow_destroy => true
@@ -13,8 +11,8 @@ class Question
   belongs_to :book
   belongs_to :quiz
   
-  validates_presence_of :question_text, :correct_answer_hint, :incorrect_answer_hint
-  validate :validate_answers
+  validates_presence_of :question_text
+  #validate :validate_answers
   validates_associated :quiz
 
   def validate_answers
