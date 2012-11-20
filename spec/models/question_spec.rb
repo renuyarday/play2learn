@@ -15,8 +15,7 @@ describe Question do
   describe "should validate" do
     before { @question = Question.create }
     
-    it { @question.errors[:question_text].should == ["can't be blank"] }
-    it { @question.errors[:answers].should == ["A question must have at least one answer"] }
+    it { @question.errors[:question_text].should == ["Atleast two answers are required", "One answer must be selected as the correct answers", "can't be blank"] }
 
   end
 

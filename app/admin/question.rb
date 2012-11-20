@@ -5,7 +5,7 @@ ActiveAdmin.register Question do
     def new
       new! do |format|
         format.html { @question.quiz = Quiz.find(params[:quiz_id]) }
-      end
+      end      
     end
   end
 

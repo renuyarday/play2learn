@@ -10,6 +10,6 @@ class Answer
   belongs_to :question
    
   validates_presence_of :answer_text, :hint
-  #validates_associated :question
+  validates_associated :question
   
 end
