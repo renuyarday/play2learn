@@ -1,6 +1,8 @@
 ActiveAdmin.register Question do
   menu false
 
+  actions :all, :except => [:destroy]
+
   controller do
     def new
       new! do |format|
@@ -16,9 +18,6 @@ ActiveAdmin.register Question do
   show :title => :question_text do |category|
     attributes_table do
       row :question_text
-      row "Correct Answer" do |category|
-        "TBD"
-      end
       row "Quiz" do |question|
       	link_to question.quiz.title, admin_quiz_path(question.quiz)
       end

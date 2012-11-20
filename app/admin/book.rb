@@ -1,6 +1,8 @@
 ActiveAdmin.register Book do
   menu priority: 3
 
+  actions :all, :except => [:destroy]
+
   index do
     column "Cover Image" do |book|
       image_tag book.cover_image.url

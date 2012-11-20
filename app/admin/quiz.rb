@@ -1,6 +1,8 @@
 ActiveAdmin.register Quiz do
   menu priority: 4
 
+  actions :all, :except => [:destroy]
+
   index do
     column :title
     column "Categories" do |quiz|
@@ -19,9 +21,6 @@ ActiveAdmin.register Quiz do
       row "Categories" do
         simple_format "<ul>#{quiz.categories.map { |category| "<li>#{category.name}</li>" }.join}</ul>"
       end
-      # row "Duration" do
-      #   "#{quiz.time["hours"]} hours and #{quiz.time["minutes"]} minutes"
-      # end
       row :status
    end
    render "questions"
