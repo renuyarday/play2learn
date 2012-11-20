@@ -3,7 +3,7 @@ class Question
   include Mongoid::Timestamps
   include Mongoid::Paranoia
 
-  field :question_text,           :type => String
+  field :question_text, :type => String
   
   has_many :answers, :dependent => :destroy
   accepts_nested_attributes_for :answers, :allow_destroy => true
@@ -21,11 +21,10 @@ class Question
     def validate_answers
       errors[:question_text] << "Atleast two answers are required" if @answers.length < 2
       errors[:question_text] << "One answer must be selected as the correct answers" if !correct_answer_set?  
-        
     end
 
     def correct_answer_set?
-      @answers.select { |answer| answer.is_correct == true }.length == 1
+      @answers.select { |answer| answer.is_correct }.length == 1
     end
   
 end
