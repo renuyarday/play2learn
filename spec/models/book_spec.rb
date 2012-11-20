@@ -1,9 +1,11 @@
 require "spec_helper"
 
 describe Book do
-  before { @book = Book.create :title => "Foo", :link => "http://foo.com",
-    :cover_image => File.open("#{Rails.root}/db/icon_badge.gif"),
-    :categories => [Category.first], :author => "John Doe" }
+  
+  before :each do
+    Book.delete_all
+    @book = Book.create :title => "Foo", :link => "http://foo.com", :author => "John Doe"
+  end
 
   describe "should have the structure" do
   
@@ -41,10 +43,16 @@ describe Book do
   end
 
   it "should be marked deleted when delete is performed" do
+    refresh_categories
+    
+    @book.categories = [Category.first]
+    @book.cover_image = File.open("#{Rails.root}/db/icon_badge.gif")
     @book.save!
     Book.all.count.should == 1
+
     @book.delete
     Book.all.count.should == 0
+    
     Book.where(:deleted_at.exists => true, :title => 'Foo').count.should == 1
   end
 
