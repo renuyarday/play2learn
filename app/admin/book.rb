@@ -16,7 +16,7 @@ ActiveAdmin.register Book do
       link_to book.link
     end
     default_actions
-  end
+  end 
 
   show do |book|
     attributes_table do
@@ -38,7 +38,7 @@ ActiveAdmin.register Book do
   end
 
   form(:html => { :multipart => true }) do |f|
-    f.inputs "Category Details" do
+    f.inputs "Book Details" do
       f.input :title
       f.input :author
       f.input :summary, :as => :text
