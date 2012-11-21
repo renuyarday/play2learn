@@ -56,5 +56,13 @@ describe Quiz do
       Quiz.where(:deleted_at.exists => true, :title => 'Foo').count.should == 1
     end
   end
+  
+  describe "when Quiz title is already taken" do
+    before do
+      Quiz.create title: "Foo", :description => "Foo Quiz"
+    end
+
+    it { should_not be_valid }
+  end
 
 end

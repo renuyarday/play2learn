@@ -15,7 +15,7 @@ describe Question do
   describe "should validate" do
     before { @question = Question.create }
     
-    it { @question.errors[:question_text].should == ["Atleast two answers are required", "One answer must be selected as the correct answers", "can't be blank"] }
+    it { @question.errors[:question_text].should == ["can't be blank", "Atleast two answers are required", "One answer must be selected as the correct answers" ] }
 
   end
 
@@ -26,4 +26,18 @@ describe Question do
     question.should be_persisted
   end
 
+  describe "should validate" do
+   before{ 
+      Quiz.delete_all
+     quiz = Quiz.create(:title => "New Quiz",:description => "new Quiz")
+    Question.create(:question_text => "what is ruby?", :answers => { 0 => {:answer_text => "Me", :hint => "dumb ass read this book", :is_correct => false}, 
+                                                                     1 => {:answer_text => "Batman", :hint => "finally", :is_correct => true}, 
+                                                                     2 => {:answer_text =>"you", :hint => "ha ha ha", :is_correct => false}})
+    @question = Question.create(:question_text => "what is ruby?", :answers => { 0 => {:answer_text => "Me", :hint => "dumb ass read this book", :is_correct => false}, 
+                                                                     1 => {:answer_text => "Batman", :hint => "finally", :is_correct => true}, 
+                                                                     2 => {:answer_text =>"you", :hint => "ha ha ha", :is_correct => false}})
+                                                                   }
+                                                                   
+    it { @question.errors[:question_text].should == ["Another with this question is already created"] }                                                             
+  end
 end

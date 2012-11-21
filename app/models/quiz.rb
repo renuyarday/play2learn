@@ -9,7 +9,7 @@ class Quiz
   field :description, :type => String
   field :status, :type => String, :default => "Draft"
   field :duration, :type => Integer, :default => Settings.quiz.duration
-
+  validates_uniqueness_of :title, :case_sensitive => false, :message => "Quiz with similar title is already created"
   has_and_belongs_to_many :categories
   
   has_many :questions

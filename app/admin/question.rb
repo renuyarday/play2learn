@@ -7,11 +7,15 @@ ActiveAdmin.register Question do
         format.html { @question.quiz = Quiz.find(params[:quiz_id]) }
       end      
     end
+    
+    def index
+      index! do |format|
+        format.html { redirect_to admin_quizzes_url }
+      end
+    end
   end
 
-  index do
-  	"Foo"
-  end
+  
 
   show :title => :question_text do |category|
     attributes_table do
