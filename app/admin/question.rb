@@ -1,10 +1,10 @@
 ActiveAdmin.register Question do
   menu false
-
+       
   controller do
     def new
       new! do |format|
-        format.html { @question.quiz = Quiz.find(params[:quiz_id]) }
+        format.html { @question.quiz = Quiz.find(params[:quiz_id]) if params[:quiz_id] }
       end      
     end
     
@@ -42,4 +42,6 @@ ActiveAdmin.register Question do
     end
     f.buttons
   end
+  
+  
 end
