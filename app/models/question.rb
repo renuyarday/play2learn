@@ -27,7 +27,7 @@ class Question
     def validate_answers
       errors[:question_text] << "Atleast two answers are required" if @answers.length < 2
       errors[:question_text] << "One answer must be selected as the correct answers" if !correct_answer_set?
-      errors[:answers] << "Two or more answer texts are matching" if unique_answer?
+      errors[:question_text] << "Two or more answer texts are matching" if unique_answer?
     end
 
     def correct_answer_set?
@@ -59,8 +59,6 @@ class Question
     def quiz_contains_question?
       self.quiz.questions.where(:quiz => self.quiz, :question_text => Regexp.compile(self.question_text, Regexp::IGNORECASE)).exists?
     end
-    
-    
 end
 
 
