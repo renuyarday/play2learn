@@ -3,8 +3,7 @@ require "spec_helper"
 describe Answer do
   
   describe "should have the structure" do
-    before { @answer = Answer.create answer_text:"Foo",
-      is_correct:true, hint:"right" }
+    before { @answer = FactoryGirl.build :answer }
   
     subject { @answer }
   

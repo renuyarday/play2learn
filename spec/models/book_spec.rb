@@ -4,7 +4,7 @@ describe Book do
   
   before :each do
     Book.delete_all
-    @book = Book.create :title => "Foo", :link => "http://foo.com", :author => "John Doe"
+    @book = FactoryGirl.build :book
   end
 
   describe "should have the structure" do
@@ -44,7 +44,7 @@ describe Book do
 
   it "should be marked deleted when delete is performed" do
     refresh_categories
-    
+
     @book.categories = [Category.first]
     @book.cover_image = File.open("#{Rails.root}/db/icon_badge.gif")
     @book.save!
